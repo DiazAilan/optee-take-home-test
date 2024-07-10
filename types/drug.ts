@@ -14,6 +14,9 @@ export class Drug {
       this.handleBenefit()
       this.handleExpires()
       this.checkForExpiration()
+      if (this.benefit > 50) {
+        this.benefit = 50
+      }
     }
 
     protected handleBenefit(): void {
@@ -52,17 +55,18 @@ export class Fervex extends Drug {
       super('Fervex', expiresIn, benefit)
   }
 
-  public updateBenefitValue(): void {
-    if (this.benefit < 50) {
+  protected handleBenefit(): void {
+    this.benefit = this.benefit + 1
+  }
+
+  protected checkForExpiration(): void {
+    if (this.expiresIn <= 10) {
       this.benefit = this.benefit + 1
-
-      if (this.expiresIn < 11) {
-        this.benefit = this.benefit + 1;
-      }
     }
-    this.expiresIn = this.expiresIn - 1;
 
-    this.benefit = this.benefit - this.benefit;
+    if (this.expiresIn <= 5) {
+      this.benefit = this.benefit + 1
+    }
   }
 }
 
@@ -71,21 +75,30 @@ export class MagicPill extends Drug {
       super('Magic Pill', expiresIn, benefit)
   }
 
-  public updateBenefitValue(): void {
-    
-  }
+  protected handleBenefit(): void {}
+  protected handleExpires(): void {}
+  protected checkForExpiration(): void {}
+
 }
 
 export class Doliprane extends Drug {
   constructor(expiresIn: number, benefit: number) {
       super('Doliprane', expiresIn, benefit)
   }
+}
 
-  public updateBenefitValue(): void {
-    if (this.benefit > 0) {
-      this.benefit = this.benefit - 1;
+export class Dafalgan extends Drug {
+  constructor(expiresIn: number, benefit: number) {
+      super('Dafalgan', expiresIn, benefit)
+  }
+
+  public handleBenefit(): void {
+    this.benefit = this.benefit > 1 ? this.benefit - 2 : 0
+  }
+
+  protected checkForExpiration(): void {
+    if (this.expiresIn <= 0) {
+      this.benefit = this.benefit - 2
     }
-    this.expiresIn = this.expiresIn - 1;
-    this.benefit = this.benefit - 1;
   }
 }
