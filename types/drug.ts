@@ -10,8 +10,9 @@ export class Drug {
       this.benefit = benefit;
     }
 
-    public updateBenefitValue(input: number): void {
-      this.benefit = input
+    public updateBenefitValue(): void {
+      this.benefit = this.benefit - 1
+      this.expiresIn = this.expiresIn - 1
     }
 }
 
@@ -20,7 +21,7 @@ export class HerbalTea extends Drug {
         super('Herbal Tea', expiresIn, benefit)
     }
 
-    public updateBenefitValue(input: number): void {
+    public updateBenefitValue(): void {
       if (this.benefit < 50) {
         this.benefit = this.benefit + 1
       }
@@ -38,7 +39,7 @@ export class Fervex extends Drug {
       super('Fervex', expiresIn, benefit)
   }
 
-  public updateBenefitValue(input: number): void {
+  public updateBenefitValue(): void {
     if (this.benefit < 50) {
       this.benefit = this.benefit + 1
 
@@ -64,7 +65,7 @@ export class MagicPill extends Drug {
       super('Magic Pill', expiresIn, benefit)
   }
 
-  public updateBenefitValue(input: number): void {
+  public updateBenefitValue(): void {
     
   }
 }
@@ -74,7 +75,7 @@ export class Doliprane extends Drug {
       super('Doliprane', expiresIn, benefit)
   }
 
-  public updateBenefitValue(input: number): void {
+  public updateBenefitValue(): void {
     if (this.benefit > 0) {
       this.benefit = this.benefit - 1;
     }
