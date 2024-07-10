@@ -24,12 +24,12 @@ export class Drug {
     }
 
     protected handleExpires(): void {
-      this.expiresIn = this.expiresIn - 1
+      this.expiresIn--;
     }
 
     protected checkForExpiration(): void {
-      if (this.expiresIn <= 0) {
-        this.benefit = this.benefit - 1
+      if (this.expiresIn < 0) {
+        this.handleBenefit()
       }
     }
 }
@@ -40,12 +40,12 @@ export class HerbalTea extends Drug {
     }
 
     protected handleBenefit(): void {
-      this.benefit = this.benefit + 1
+      this.benefit++;
     }
 
     protected checkForExpiration(): void {
-      if (this.expiresIn <= 0) {
-        this.benefit = this.benefit + 1
+      if (this.expiresIn < 0) {
+        this.benefit++;
       }
     }
 }
@@ -56,16 +56,20 @@ export class Fervex extends Drug {
   }
 
   protected handleBenefit(): void {
-    this.benefit = this.benefit + 1
+    this.benefit++;
   }
 
   protected checkForExpiration(): void {
     if (this.expiresIn <= 10) {
-      this.benefit = this.benefit + 1
+      this.benefit++;
     }
 
     if (this.expiresIn <= 5) {
-      this.benefit = this.benefit + 1
+      this.benefit++;
+    }
+
+    if (this.expiresIn < 0) {
+      this.benefit = 0
     }
   }
 }
