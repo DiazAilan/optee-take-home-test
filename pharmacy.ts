@@ -18,7 +18,7 @@ export class Pharmacy {
   constructor(drugs: Drug[] = []) {
     this.drugs = drugs;
   }
-  updateBenefitValue() {
+  updateBenefitValue(): Drug[] {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&

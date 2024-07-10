@@ -10,7 +10,12 @@ const drugs = [
 ];
 const trial = new Pharmacy(drugs);
 
-const log = [];
+// As a polemic the type any could be, for the name of the log variable and its function.
+// I'd say that it is meant to be an array that accepts any type of objects or primitives
+// Another solution is to call it drugLog and type it as a :Drug[].
+// But since this is the application main file I'd rather be as abstract as possible and
+// hide the business logic from this file if I can.
+const log: any[] = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
   log.push(JSON.stringify(trial.updateBenefitValue()));
